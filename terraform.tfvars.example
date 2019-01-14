@@ -1,0 +1,9 @@
+acme_email = "admin@example.com"
+
+domain_name = "example.com"
+
+dns_zone_name = "example-com"
+
+google_project_id = "default-0"
+
+region = "us-central1"
