@@ -90,6 +90,12 @@ accessLogs:
   enabled: false
 acme:
   challengeType: "http-01"
+  domains:
+    enabled: true
+    domainsList:
+      - main: "${var.domain_name}"
+      - sans:
+        - "www.${var.domain_name}"
   email: "${var.acme_email}"
   enabled: true
   logging: true
@@ -97,6 +103,7 @@ acme:
   persistence:
     enabled: false
   staging: false
+externalTrafficPolicy: Local
 forwardedHeaders:
   enabled: true
   trustedIPs:
@@ -122,6 +129,7 @@ ssl:
   ]
   enabled: true
   enforced: true
+  generateTLS: false
   tlsMinVersion: VersionTLS12
 cpuRequest: 200m
 memoryRequest: 100Mi

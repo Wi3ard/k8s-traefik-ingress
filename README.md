@@ -41,7 +41,7 @@ Storage changes after installation need to be manually handled by your cluster a
 Find the volumes/claims that are being used, and change the `reclaimPolicy` for each from `Delete` to `Retain`:
 
 ```shell
-$ kubectl get pv -n kube-system | grep datadir-consul
+$ kubectl get pv | grep datadir-consul
 pvc-d4184653-179a-11e9-ad5f-42010a80029a   1Gi        RWO            Delete           Bound     kube-system/datadir-consul-0   standard                 9h
 
 $ kubectl patch pv pvc-d4184653-179a-11e9-ad5f-42010a80029a -p "{\"spec\":{\"persistentVolumeReclaimPolicy\":\"Retain\"}}"
@@ -56,7 +56,7 @@ pvc-d4184653-179a-11e9-ad5f-42010a80029a   1Gi        RWO            Retain     
 After you uninstall this plan from the cluster, and **you are completely sure** you don't need its persisten volumes anymore, you can delete them using following commands:
 
 ```shell
-$ kubectl get pvc -n kube-system | grep datadir-consul
+$ kubectl get pvc | grep datadir-consul
 datadir-consul-0   Bound     pvc-d4184653-179a-11e9-ad5f-42010a80029a   1Gi        RWO            standard       15h
 
 $ kubectl delete pvc datadir-consul-0 -n kube-system
